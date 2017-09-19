@@ -32,9 +32,16 @@ if __name__ == '__main__':
         if abs(last_y - y) < acceptable_delta:
             print("a minima is found @ around (%.6f, %.6f)" % (x_val, y))
             print("in", i, "timesteps")
+            print()
             break
 
         last_y = y
+
+    print("critical points are at:")
+    x_crits = solve(derv, x)
+    for x_crit in x_crits:
+        y_crit = func.evalf(10, subs={x: x_crit})
+        print("(%.6f, %.6f)" % (x_crit, y_crit))
 
     # TODO improve this visualization
     plot(func, (x, -10, 10))
